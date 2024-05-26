@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.21;
 
-// import "hardhat/console.sol";
-
 contract ES {
 
-    enum Gender { Male, Female, Transgender, Non_binary }
+    // enum Gender { Male, Female, Transgender, Non_binary }
     enum UserType { Administrator, Voter }
 
     struct Location {
@@ -21,7 +19,7 @@ contract ES {
 
     struct Voter {
         string name;
-        Gender gender;
+        string gender;
         DOB dob;
         string uid; //Encrypted
         string constituency;
@@ -32,7 +30,7 @@ contract ES {
 
     struct Candidate {
         string name;
-        Gender gender;
+        string gender;
         DOB dob;
         string uid; //Encrypted
         string constituency;
@@ -43,9 +41,10 @@ contract ES {
     }
 
     mapping(string => Voter) public voters;
-    mapping(string => Candidate) public candidate;
+    mapping(string => Candidate) public candidates;
     mapping(string => Candidate[]) public constituencies;
     UserType public userType;
+    string[] private constituencyList;
 
     constructor() {
         if(msg.sender == 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4) {
@@ -72,7 +71,7 @@ contract ES {
         int _long,
         string memory _phoneNumber
     ) public onlyAdministrator { 
-        voters[_uid] = Voter(_name, strToGender(_gender), DOB(_day, _month, _year), _uid, _constituency,
+        voters[_uid] = Voter(_name, _gender, DOB(_day, _month, _year), _uid, _constituency,
         Location(_lat, _long), _phoneNumber, false);
     }
 
@@ -89,7 +88,7 @@ contract ES {
         string memory _politicalAffiliation,
         string memory _phoneNumber
     ) public onlyAdministrator { 
-            constituencies[_constituency].push(Candidate(_name, strToGender(_gender), DOB(_day, _month, _year), _uid, _constituency,
+            constituencies[_constituency].push(Candidate(_name, _gender, DOB(_day, _month, _year), _uid, _constituency,
             Location(_lat, _long), _politicalAffiliation, _phoneNumber, 0));
     }
 
@@ -97,15 +96,37 @@ contract ES {
         string memory _constituency
     ) public view returns (Candidate[] memory) {
         uint256 candidateCount = constituencies[_constituency].length;
-        Candidate[] memory candidates = new Candidate[](candidateCount);
+        Candidate[] memory candidatesList = new Candidate[](candidateCount);
         for (uint256 i = 0; i < candidateCount; i++) {
-            candidates[i] = constituencies[_constituency][i];
+            candidatesList[i] = constituencies[_constituency][i];
         }
-        return candidates;
+        return candidatesList;
+    }
+
+    function checkVoterValidity(string memory _uid) public view returns (bool) {
+        return bytes(voters[_uid].name).length != 0;
     }
 
     function getVoterDetails(string memory _uid) public view returns (Voter memory) {
         return voters[_uid];
+    }
+
+    function vote(
+        string memory _voter_uid,
+        string memory _constituency,
+        uint _index
+    ) public returns (bool) {
+        if((constituencies[ _constituency].length > 0)
+        && (_index < constituencies[_constituency].length)
+        && !voters[_voter_uid].isVoted
+        ) {
+            constituencies[_constituency][_index].votes += 1;
+            candidates[constituencies[_constituency][_index].uid].votes += 1;
+            voters[_voter_uid].isVoted = true;
+        } else {
+            return false;
+        }
+        return true;
     }
 
     function compareStrings(string memory _str1, string memory _str2) public pure returns (bool) {
@@ -114,14 +135,14 @@ contract ES {
         return hash1 == hash2;
     }
 
-    function strToGender(string memory _strGender) private pure returns (Gender) {
-        if (keccak256(abi.encodePacked(_strGender)) == keccak256(abi.encodePacked("Male"))) {
-            return Gender.Male;
-        } else if (keccak256(abi.encodePacked(_strGender)) == keccak256(abi.encodePacked("Female"))) {
-            return Gender.Female;
-        } else {
-            revert("Invalid gender. Please specify Male or Female.");
-        }
-    }
+    // function strToGender(string memory _strGender) private pure returns (Gender) {
+    //     if (keccak256(abi.encodePacked(_strGender)) == keccak256(abi.encodePacked("Male"))) {
+    //         return Gender.Male;
+    //     } else if (keccak256(abi.encodePacked(_strGender)) == keccak256(abi.encodePacked("Female"))) {
+    //         return Gender.Female;
+    //     } else {
+    //         revert("Invalid gender. Please specify Male or Female.");
+    //     }
+    // }
 
 }
