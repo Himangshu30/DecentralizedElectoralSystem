@@ -1,0 +1,27 @@
+/*counter*/ 
+.counter {
+  font-weight: bold;
+  font-size: 3.5rem;
+  color: #34c2ff;
+}
+ 
+.countercaption {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: black;
+}
+
+.counterbody {
+  font-family: Roboto;
+  background-color: aliceblue;
+}
+
+/*home*/ 
+.homepagefooter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
