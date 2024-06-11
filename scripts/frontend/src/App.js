@@ -11,13 +11,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import LoadingBar from 'react-top-loading-bar'
 import "./index.css";
 import "./App.css";
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
-  const [progress, setProgress] = useState(0);
   if (mode === 'light') {
     document.body.style.backgroundColor = '#ecfcff';
   }
