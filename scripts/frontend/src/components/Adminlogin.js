@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye'
@@ -24,26 +25,20 @@ function Adminlogin(props) {
         <br /><br />
         <form className="row g-3">
           <div className="col-md-12">
-            <label htmlFor="adminuserid" className="form-label" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Admin Unique Id</label>
-            <input type="text" className={`form-control input ${props.mode === 'dark' ? 'red-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Abcde123!" required />
-          </div>
-          <div id="AdminUniqueIdHelpBlock" className="form-text" style={{ color: props.mode === 'dark' ? 'white' : 'black', userSelect: "none" }}>
-            Your User Id must be atleast 8 characters long.
+            <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Enter your Admin Unique Id" required />
           </div>
           <div className="col-md-12">
-            <label htmlFor="Password" className="form-label" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Password</label>
             <div className="input-group flex-nowrap">
-              <input type={type} className="form-control" id="Password" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="pass325@" required value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
+              <input type={type} className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="Password" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Enter your Password" required value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
               <span class="input-group-text" id="addon-wrapping" onClick={handleToggle}>
                 <Icon class="absolute mr-10" icon={icon} size={25} />
               </span>
             </div>
           </div>
-          <div id="PasswordHelpBlock" className="form-text" style={{ color: props.mode === 'dark' ? 'white' : 'black', userSelect: "none" }}>
-            Your Password must be atleast 8 characters long.
-          </div>
           <div className="col-12">
-            <button type="submit" className="btn btn-primary">Log in</button>
+            <Link to="/admin">
+              <button type="submit" className="btn btn-primary">Log in</button>
+            </Link>
           </div>
         </form>
         <br />

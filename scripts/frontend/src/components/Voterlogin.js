@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 function Voterlogin(props) {
   const states = [
     { id: "1", name: "Andaman And Nicobar Islands" },
@@ -542,7 +543,7 @@ function Voterlogin(props) {
     { id: "500", stateId: "35", name: "Mirzapur" },
     { id: "501", stateId: "35", name: "Robertsganj" },
     { id: "502", stateId: "36", name: "Cooch Behar" },
-    { id: "503", stateId: "36", name: "Alipurduars" },
+    { id: "503", stateId: "36", name: "Alipurduar" },
     { id: "504", stateId: "36", name: "Jalpaiguri" },
     { id: "505", stateId: "36", name: "Darjeeling" },
     { id: "506", stateId: "36", name: "Raiganj" },
@@ -598,19 +599,14 @@ function Voterlogin(props) {
     <div>
       <br />
       <br />
-      <div className="container-sm" style={{ backgroundColor: props.mode === 'dark' ? '#495057' : 'white', maxWidth: "600px" }}>
+      <div className="container-sm" style={{ backgroundColor: props.mode === 'dark' ? '#495057' : 'white', maxWidth: "650px" }}>
         <h1 style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Voter Log In</h1>
         <br /><br />
         <form className="row g-3">
           <div className="col-md-12">
-            <label htmlFor="AadharNumber" className="form-label" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Voter Unique Id</label>
-            <input type="number" className="form-control" id="AadharNumber" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="0000-1111-2222" minLength={12} maxLength={12} required />
-            <div id="AadharNumberHelpBlock" className="form-text" style={{ color: props.mode === 'dark' ? 'white' : 'black', userSelect: "none" }}>
-              Your User Id must be 10 digits long, contain only numbers.
-            </div>
+            <input type="number" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="AadharNumber" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Enter your Voter Unique Id" minLength={12} maxLength={12} required />
           </div>
           <div className="col-md-6">
-            <label htmlFor="DOB" className="form-label" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>State or Union Territory</label>
             <select id="states" class="form-select" aria-label="Default select example" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} onChange={(e) => handleState(e.target.value)}>
               <option selected style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>Select your State or Union Territory</option>
               {
@@ -626,13 +622,12 @@ function Voterlogin(props) {
             </select>
           </div>
           <div className="col-md-6">
-            <label htmlFor="DOB" className="form-label" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Constituency</label>
             <select id="constituencies" class="form-select" aria-label="Default select example" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
               <option selected style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>Select your Constituency</option>
               {
                 constituency &&
                   constituency !== undefined ?
-                  constituency.map((cnst, index) => {
+                  constituency.sort((a, b) => (a.name > b.name) ? 1 : -1).map((cnst, index) => {
                     return (
                       <option key={index} value={cnst.id} style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>{cnst.name}</option>
                     )
@@ -648,7 +643,9 @@ function Voterlogin(props) {
             </label>
           </div>
           <div className="col-12">
-            <button type="submit" className="btn btn-primary">Log in</button>
+            <Link to="/voter">
+              <button type="submit" className="btn btn-primary">Log in</button>
+            </Link>
           </div>
         </form>
         <br />

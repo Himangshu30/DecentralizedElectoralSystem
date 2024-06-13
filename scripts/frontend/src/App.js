@@ -7,6 +7,15 @@ import Home from './components/Home';
 import Error from './components/Error';
 import Voterlogin from './components/Voterlogin';
 import Adminlogin from './components/Adminlogin';
+import Viewresult from './components/Viewresult';
+import Voterpage from './components/Voterpage';
+import Adminpage from './components/Adminpage';
+import Candidatelist from './components/Candidatelist';
+import Voterlist from './components/Voterlist';
+import Voterregistration from './components/Voterregistration';
+import Candidateregistration from './components/Candidateregistration';
+import Candidatedeletion from './components/Candidatedeletion';
+import Voterdeletion from './components/Voterdeletion';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -47,7 +56,6 @@ function App() {
       path: "/",
       element: <>
         <Navbar mode={mode} toggleMode={toggleMode} />
-        
         <Alert alert={alert} />
         <div id="body" style={{ backgroundImage: 'url("/homepage-img.jpg")', backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundAttachment: "fixed", height: "100vh" }}><Home mode={mode} /></div>
       </>,
@@ -56,7 +64,6 @@ function App() {
       path: "/about",
       element: <>
         <Navbar mode={mode} toggleMode={toggleMode} />
-        
         <Alert alert={alert} />
         <About mode={mode} />
       </>,
@@ -65,7 +72,6 @@ function App() {
       path: "/admin-log-in",
       element: <>
         <Navbar mode={mode} toggleMode={toggleMode} />
-        
         <Alert alert={alert} />
         <Adminlogin mode={mode} />
       </>,
@@ -74,18 +80,80 @@ function App() {
       path: "/voter-log-in",
       element: <>
         <Navbar mode={mode} toggleMode={toggleMode} />
-        
         <Alert alert={alert} />
         <Voterlogin mode={mode} />
       </>,
     },
-
     {
       path: "/view-result",
       element: <>
         <Navbar mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
-        <About />
+        <Viewresult />
+      </>,
+    },
+    {
+      path: "/voter",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Voterpage />
+      </>,
+    },
+    {
+      path: "/admin",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Adminpage mode={mode} />
+      </>,
+    },
+    {
+      path: "/admin/voter-list",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Voterlist />
+      </>,
+    },
+    {
+      path: "/admin/candidate-list",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Candidatelist />
+      </>,
+    },
+    {
+      path: "/admin/voter-registration",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Voterregistration />
+      </>,
+    },
+    {
+      path: "/admin/candidate-registration",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Candidateregistration />
+      </>,
+    },
+    {
+      path: "/admin/voter-deletion",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Voterdeletion />
+      </>,
+    },
+    {
+      path: "/admin/candidate-deletion",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Candidatedeletion />
       </>,
     },
   ]);
