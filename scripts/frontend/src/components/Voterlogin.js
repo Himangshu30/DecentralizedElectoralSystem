@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function Voterlogin(props) {
   const states = [
     { id: "1", name: "Andaman And Nicobar Islands" },
@@ -594,7 +594,7 @@ function Voterlogin(props) {
     const dt = constituencies.filter(x => x.stateId === id);
     setConstituency(dt);
   }
-
+  const navigate = useNavigate();
   return (
     <div>
       <br />
@@ -604,11 +604,11 @@ function Voterlogin(props) {
         <br /><br />
         <form className="row g-3">
           <div className="col-md-12">
-            <input type="number" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="AadharNumber" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Enter your Voter Unique Id" minLength={12} maxLength={12} required />
+            <input type="number" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="AadharNumber" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Voter Unique ID" minLength={12} maxLength={12} required />
           </div>
           <div className="col-md-6">
             <select id="states" class="form-select" aria-label="Default select example" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} onChange={(e) => handleState(e.target.value)}>
-              <option selected style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>Select your State or Union Territory</option>
+              <option selected style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>State or Union Territory</option>
               {
                 state &&
                   state !== undefined ?
@@ -623,7 +623,7 @@ function Voterlogin(props) {
           </div>
           <div className="col-md-6">
             <select id="constituencies" class="form-select" aria-label="Default select example" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>
-              <option selected style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>Select your Constituency</option>
+              <option selected style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }}>Constituency</option>
               {
                 constituency &&
                   constituency !== undefined ?
@@ -643,13 +643,13 @@ function Voterlogin(props) {
             </label>
           </div>
           <div className="col-12">
-            <Link to="/voter">
-              <button type="submit" className="btn btn-primary">Log in</button>
-            </Link>
+              <button type="submit" className="btn btn-primary" onClick={() => navigate("/voter")}>Log in</button>
           </div>
         </form>
         <br />
       </div>
+      <br />
+      <br />
     </div>
   )
 }

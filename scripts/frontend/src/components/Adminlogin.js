@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye'
@@ -16,6 +16,7 @@ function Adminlogin(props) {
       setType('password')
     }
   }
+  const navigate = useNavigate();
   return (
     <div>
       <br />
@@ -25,24 +26,24 @@ function Adminlogin(props) {
         <br /><br />
         <form className="row g-3">
           <div className="col-md-12">
-            <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Enter your Admin Unique Id" required />
+            <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Admin Unique ID" required />
           </div>
           <div className="col-md-12">
             <div className="input-group flex-nowrap">
-              <input type={type} className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="Password" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Enter your Password" required value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
+              <input type={type} className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="Password" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
               <span class="input-group-text" id="addon-wrapping" onClick={handleToggle}>
                 <Icon class="absolute mr-10" icon={icon} size={25} />
               </span>
             </div>
-          </div>
+          </div>          
           <div className="col-12">
-            <Link to="/admin">
-              <button type="submit" className="btn btn-primary">Log in</button>
-            </Link>
+              <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Log in</button>
           </div>
         </form>
         <br />
       </div>
+      <br />
+      <br />
     </div>
   )
 }

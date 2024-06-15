@@ -129,7 +129,7 @@ function App() {
       element: <>
         <Navbar mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
-        <Voterregistration />
+        <Voterregistration mode={mode} />
       </>,
     },
     {
@@ -137,7 +137,7 @@ function App() {
       element: <>
         <Navbar mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
-        <Candidateregistration />
+        <Candidateregistration mode={mode} />
       </>,
     },
     {
