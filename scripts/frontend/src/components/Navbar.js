@@ -13,11 +13,13 @@ export default function Navbar(props) {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                                <Link className={`nav-link ${props.loggedin === 'yes' ? 'disabled' : 'active'}`} aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link active" to="/about">About</Link>
+                                <Link className={`nav-link ${props.loggedin === 'yes' ? 'disabled' : 'active'}`} to="/about">About</Link>
                             </li>
+                            {(props.loggedin === "no") && 
+                            <>
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Log In
@@ -30,9 +32,19 @@ export default function Navbar(props) {
                             <li className="nav-item">
                                 <Link className="nav-link disabled" aria-disabled="true" to="/view-result">View Result</Link>
                             </li>
+                            </>
+                            }
+                            {(props.loggedin === "yes") && 
+                            <>
+                            <li className="nav-item">
+                                <Link className="nav-link active" to="/" onClick={props.toggleLoggedIn}>Log Out</Link>
+                            </li>
+                            </>
+                            }
                         </ul>
                         <div className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'light'}`}>
-                            <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" style={{ cursor: "pointer" }} />
+                            {(props.mode === 'dark') && <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" style={{ cursor: "pointer" }} checked/>}
+                            {(props.mode === 'light') && <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" style={{ cursor: "pointer" }} />}
                             <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark mode</label>
                         </div>
                     </div>

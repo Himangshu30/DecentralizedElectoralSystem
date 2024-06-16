@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Statesandconstituencies from './Statesandconstituencies';
 function Candidateregistration(props) {
   const navigate = useNavigate();
   return (
@@ -19,11 +20,11 @@ function Candidateregistration(props) {
           <div className="col-md-6">
             <label className="form-check-label" htmlFor="inlineRadio2" style={{ paddingLeft: "11px", paddingTop: "4px", color: props.mode === 'dark' ? 'white' : 'black' }}>Gender</label>
             <div className="form-check form-check-inline" style={{ paddingLeft: "56px", color: props.mode === 'dark' ? 'white' : 'black' }}>
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required/>
+              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required />
               <label className="form-check-label" htmlFor="inlineRadio1">Male</label>
             </div>
             <div className="form-check form-check-inline" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" required/>
+              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" required />
               <label className="form-check-label" htmlFor="inlineRadio2">Female</label>
             </div>
           </div>
@@ -42,17 +43,14 @@ function Candidateregistration(props) {
           <div className="col-md-6">
             <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Political Affiliation" required />
           </div>
-          <div className="col-md-6">
-            <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="State" required />
-          </div>
-          <div className="col-md-6">
-            <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Constituency" required />
-          </div>
+          <Statesandconstituencies mode={props.mode} />
           <div className="col-md-6">
             <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Iris ID" required />
           </div>
           <div className="col-12">
-            <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Register</button>
+            <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")} >Register</button>
+            <span style={{ paddingLeft: "10px" }}></span>
+            <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Back</button>
           </div>
         </form>
         <br />

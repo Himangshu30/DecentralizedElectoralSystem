@@ -17,6 +17,7 @@ function Adminlogin(props) {
     }
   }
   const navigate = useNavigate();
+  const toggle = props.toggleLoggedIn;
   return (
     <div>
       <br />
@@ -37,7 +38,7 @@ function Adminlogin(props) {
             </div>
           </div>          
           <div className="col-12">
-              <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Log in</button>
+              <button type="submit" className="btn btn-primary" onClick={() => {navigate("/admin");toggle()}}>Log in</button>
           </div>
         </form>
         <br />

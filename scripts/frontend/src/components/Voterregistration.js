@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Statesandconstituencies from './Statesandconstituencies';
 function Voterregistration(props) {
   const navigate = useNavigate();
   return (
@@ -42,17 +43,14 @@ function Voterregistration(props) {
           <div className="col-md-6">
             <input type="number" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Postal Code" required />
           </div>
-          <div className="col-md-6">
-            <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="State" required />
-          </div>
-          <div className="col-md-6">
-            <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Constituency" required />
-          </div>
+          <Statesandconstituencies mode={props.mode} />
           <div className="col-md-6">
             <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Iris ID" required />
           </div>
           <div className="col-12">
             <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Register</button>
+            <span style={{ paddingLeft: "10px" }}></span>
+            <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Back</button>
           </div>
         </form>
         <br />
