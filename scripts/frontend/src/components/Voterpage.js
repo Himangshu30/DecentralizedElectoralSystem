@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 function Voterpage(props) {
   const navigate = useNavigate();
   return (
-    <div>
-      <div className="card mb-3 container-sm" style={{backgroundColor: props.mode === 'dark' ? '#495057' : 'white', maxWidth: "900px"}}>
+    <div style={{paddingTop: "10px"}}>
+      <div className="card mb-3 container-sm" style={{backgroundColor: props.mode === 'dark' ? '#495057' : 'white', maxWidth: "900px", paddingTop: "30px", paddingBottom: "30px"}}>
   <div className="row g-0">
     <div className="col-md-4" style={{paddingLeft: "5px", paddingTop: "45px", paddingBottom: "100px", paddingRight: "20px", borderRight:`1px solid ${props.mode === 'dark' ? 'white' : 'black'}`, color: props.mode === 'dark' ? 'white' : 'black' }}>
       <img src="/defaultprofile.jpg" className="img-fluid rounded" alt="..."/>
