@@ -14,7 +14,7 @@ function Candidatelist(props) {
         <div className="col-12">
           <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Search</button>
           <span style={{ paddingLeft: "10px" }}></span>
-          <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Back</button>
+          <button type="submit" className="btn btn-danger" onClick={() => navigate("/admin")}>Back</button>
         </div>
       </form>
       <br />

@@ -106,7 +106,7 @@ function App() {
       element: <>
         <Navbar mode={mode} toggleMode={toggleMode} loggedin="yes" toggleLoggedIn={toggleLoggedIn}/>
         <Alert alert={alert} />
-        <Voterpage />
+        <Voterpage mode={mode} />
       </>,
     },
     {
