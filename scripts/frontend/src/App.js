@@ -23,6 +23,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import "./App.css";
+import Vote from './components/Vote';
 function App() {
   const [mode, setMode] = useState('light');
   const [alert, setAlert] = useState(null);
@@ -163,6 +164,14 @@ function App() {
         <Navbar mode={mode} toggleMode={toggleMode} loggedin="yes" toggleLoggedIn={toggleLoggedIn}/>
         <Alert alert={alert} />
         <Candidatedeletion />
+      </>,
+    },
+    {
+      path: "/voter/vote",
+      element: <>
+        <Navbar mode={mode} toggleMode={toggleMode} loggedin="yes" toggleLoggedIn={toggleLoggedIn}/>
+        <Alert alert={alert} />
+        <Vote mode={mode} />
       </>,
     },
   ]);

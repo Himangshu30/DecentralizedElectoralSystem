@@ -1,10 +1,11 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
 import { BsCalendarDate } from "react-icons/bs";
 import { BiMaleFemale } from "react-icons/bi";
-import { useNavigate } from 'react-router-dom';
+import { GiClick } from "react-icons/gi";
 function Voterpage(props) {
   const navigate = useNavigate();
   return (
@@ -23,8 +24,9 @@ function Voterpage(props) {
         <h6 className="card-title"><BsCalendarDate /> D.O.B : 21 Aug, 2003</h6>
         <h6 className="card-title"><IoHome /> Address : Prachya Bharati Road, Balurghat, West Bengal, 733101</h6>
         <br />
+        <h6 className="card-title"><GiClick /> Voted : No</h6>
         <div style={{paddingTop: "180px"}}>
-        <button type="submit" className="btn btn-primary" onClick={() => navigate("/vote")}>Cast a Vote</button>
+        <button type="submit" className="btn btn-primary" onClick={() => navigate("/voter/vote")}>Cast a Vote</button>
         </div>  
       </div>
     </div>
