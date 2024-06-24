@@ -10,7 +10,7 @@ function Voterregistration(props) {
       <div className="container-sm" style={{ backgroundColor: props.mode === 'dark' ? '#495057' : 'white', maxWidth: "900px" }}>
         <h1 style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>Voter Registration</h1>
         <br /><br />
-        <form className="row g-3">
+        <form className="row g-3" onSubmit={() => navigate("/admin")}>
           <div className="col-md-6">
             <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Name" required />
           </div>
@@ -48,7 +48,7 @@ function Voterregistration(props) {
             <input type="text" className={`form-control input ${props.mode === 'dark' ? 'white-placeholder' : ''}`} id="adminuserid" style={{ backgroundColor: props.mode === 'dark' ? 'rgb(50 52 52)' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} placeholder="Iris ID" required />
           </div>
           <div className="col-12">
-            <button type="submit" className="btn btn-primary" onClick={() => navigate("/admin")}>Register</button>
+            <button type="submit" className="btn btn-primary">Register</button>
             <span style={{ paddingLeft: "10px" }}></span>
             <button type="submit" className="btn btn-danger" onClick={() => navigate("/admin")}>Back</button>
           </div>
