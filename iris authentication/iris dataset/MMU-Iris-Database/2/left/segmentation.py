@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the image using OpenCV
-image_cv = cv2.imread("aeval4.bmp", cv2.IMREAD_GRAYSCALE)
+image_cv = cv2.imread("bryanl3.bmp", cv2.IMREAD_GRAYSCALE)
 
 # Apply a median blur to reduce noise
 blurred = cv2.medianBlur(image_cv, 5)

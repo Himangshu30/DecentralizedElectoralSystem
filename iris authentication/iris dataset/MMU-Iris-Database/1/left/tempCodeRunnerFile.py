@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the image using OpenCV
-image_cv = cv2.imread("aeval4.bmp", cv2.IMREAD_GRAYSCALE)
+image_cv = cv2.imread("aeval1.bmp", cv2.IMREAD_GRAYSCALE)
 
 # Apply a median blur to reduce noise
 blurred = cv2.medianBlur(image_cv, 5)
@@ -48,21 +48,26 @@ mask = mask - pupil_mask
 # Apply the mask to isolate the iris
 segmented_iris = cv2.bitwise_and(image_cv, image_cv, mask=mask)
 
+rows, cols = segmented_iris.shape
+center_x, center_y = cols // 2, rows // 2  # Assuming iris is centered
+    
+# Generate a polar grid
+theta, r = np.meshgrid(
+    np.linspace(0, 2 * np.pi, 256), 
+    np.linspace(0, radius, radius)
+)
+    
+# Map to Cartesian coordinates
+x = (center_x + r * np.cos(theta)).astype(np.float32)
+y = (center_y + r * np.sin(theta)).astype(np.float32)
+    
+# Perform remapping
+normalized_iris = cv2.remap(segmented_iris, x, y, interpolation=cv2.INTER_LINEAR)
+
 # Display the result
 plt.figure(figsize=(12, 6))
-plt.subplot(1, 3, 1)
+plt.subplot(1, 4, 1)
 plt.imshow(image_cv, cmap='gray')
 plt.title('Original Image')
 plt.axis('off')
 
-plt.subplot(1, 3, 2)
-plt.imshow(segmented_iris, cmap='gray')
-plt.title('Segmented Iris')
-plt.axis('off')
-
-plt.subplot(1, 3, 3)
-plt.imshow(mask, cmap='gray')
-plt.title('Mask')
-plt.axis('off')
-
-plt.show()
